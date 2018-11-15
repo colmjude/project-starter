@@ -3,6 +3,7 @@
 // standard things
 const gulp = require('gulp');
 const fs = require('fs');
+const path = require('path');
 
 // gulp plugins
 const babel = require('gulp-babel');
@@ -22,6 +23,7 @@ const uglify = require('gulp-uglify');
 // --------------------------------------
 const config = {
   distPath: 'dist',
+  dataPath: 'application/data',
   scssSrcPath: 'application/src/scss',
   jsSrcPath: 'application/src/js',
   imgSrcPath: 'application/static/images',
@@ -96,9 +98,9 @@ gulp.task('babel-min', () =>
 // Building pages
 // --------------------------------------
 gulp.task('nunjucks', () =>
-  gulp.src(`application/templates/index.html`)
-    .pipe(data((file) => JSON.parse(fs.readFileSync('application/data/data.json'))))
-    .pipe(nunjucks.compile())
+  gulp.src(`${config.templatesPath}/*.html`)
+    .pipe(data(getDataForFile))
+    .pipe(nunjucks.compile('.', {}))
     .pipe(gulp.dest( config.distPath ))
     .pipe(browserSync.reload({
       stream: true
@@ -109,6 +111,26 @@ gulp.task('nunjucks', () =>
 //       'prettynumber': commaFilter,
 //       'possession': possessionFilter
 //     }}))
+  // Load custom data for templates
+function getDataForFile(file){
+
+  var globals = null;
+  var globals_json = `${config.dataPath}/globals.json`;
+  if(fs.existsSync(globals_json)) {
+    globals = JSON.parse(fs.readFileSync(globals_json, "utf8"));
+  }
+
+  var context = null
+  var context_json = config.dataPath + "/" + path.basename(file.path.replace('.html', '.json'));
+  if(fs.existsSync(context_json)) {
+    context = JSON.parse(fs.readFileSync(context_json, "utf8"));
+  }
+
+  return {
+    globals: globals,
+    context: context
+  }
+}
 
 
 // --------------------------------------
