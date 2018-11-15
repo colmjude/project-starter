@@ -1,0 +1,19 @@
+{% extends "base.njk" %}
+
+{% block fonts %}
+<link href="https://fonts.googleapis.com/css?family=Dosis|Open+Sans" rel="stylesheet">
+{% endblock %}
+
+{% block main %}
+
+<p>Hello World!</p>
+
+{% endblock %}
+
+{% block body_end %}
+<script src="static/javascripts/app.js"></script>
+<script>
+  console.log("JS working!");
+</script>
+
+{% endblock %}

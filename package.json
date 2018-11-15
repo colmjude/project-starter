@@ -1,0 +1,31 @@
+{
+  "name": "project-starter",
+  "version": "0.1.0",
+  "description": "A starter kit for making static sites/pages",
+  "main": "",
+  "scripts": {
+    "test": ""
+  },
+  "author": "Colm Britton",
+  "license": "ISC",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/colmjude/project-starter.git"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "browser-sync": "^2.26.3",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.1",
+    "gulp-clean": "^0.4.0",
+    "gulp-data": "^1.3.1",
+    "gulp-imagemin": "^5.0.3",
+    "gulp-nunjucks": "^4.0.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-uglify": "^3.0.1",
+    "imagemin-pngquant": "^6.0.0"
+  }
+}
