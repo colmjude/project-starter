@@ -144,9 +144,9 @@ gulp.task('browserSync', () => {
   })
 });
 
-gulp.task('watch', ['browserSync', 'sass'], () => {
+gulp.task('watch', ['browserSync', 'scss'], () => {
   gulp.watch(`${config.scssSrcPath}/**/*.scss`, ['scss']);
-  gulp.watch([`${config.templatesPath}/index.html`, `${config.templatesPath}/*.njk`], ['nunjucks']); 
+  gulp.watch([`${config.templatesPath}/*.html`, `${config.templatesPath}/*.njk`], ['nunjucks']); 
   gulp.watch(`${config.jsSrcPath}/*.js`, ['babel']);
   // Other watchers
 });
