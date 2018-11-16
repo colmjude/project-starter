@@ -1,29 +1,38 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="{{ htmlLang | default('en') }}" class="{{ htmlClasses }}">
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <title>{{ title }}</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="{{ themeColor | default('#0b0c0c') }}" />
+  <meta name="msapplication-TileColor" content="{{ themeColor | default('#0b0c0c') }}">
 
   <!-- Search Engine -->
   <meta name="description" content="{{ page_description }}">
 
   {% block fonts %}{% endblock %}
 
+  {% block headIcons %}{% endblock %}
+
+  {% block head %}
   <link rel="stylesheet" href="static/stylesheets/main.css?v=1.0">
+  {% endblock %}
+  
+  <!-- need to put somethig for social graph meta tags in here -->
 
   <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
   <![endif]-->
-  {% block head_end %}{% endblock %}
+  {% block headEnd %}{% endblock %}
 </head>
 
 <body class="{% block body_class %}{% endblock %} ">
   <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
   {% block main %}{% endblock %}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
-  {% block body_end %}{% endblock %}
+  {% block bodyEnd %}{% endblock %}
 </body>
 </html>
