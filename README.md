@@ -1,8 +1,30 @@
+#Project starter
+
 A starter kit for making static sites/pages.
 
 Good for small, simple sites. Or for quickly spinning up pages for experimenting.
 
-### Templates
+Requires
+
+* NPM
+* Gulp
+* Nunjucks
+
+##Getting started
+
+To install everything that is needed, run
+
+```
+npm install
+```
+
+Then to generate first round of pages and assets, run
+
+```
+gulp build
+```
+
+###Templates
 
 All `.html` files in `application/templates` will be generated with
 
