@@ -1,4 +1,4 @@
-#Project starter
+# Project starter
 
 A starter kit for making static sites/pages.
 
@@ -10,7 +10,7 @@ Requires
 * Gulp
 * Nunjucks
 
-##Getting started
+## Getting started
 
 To install everything that is needed, run
 
@@ -24,7 +24,7 @@ Then to generate first round of pages and assets, run
 gulp build
 ```
 
-###Templates
+### Templates
 
 All `.html` files in `application/templates` will be generated with
 
