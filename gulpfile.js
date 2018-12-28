@@ -98,7 +98,7 @@ gulp.task('babel-min', () =>
 // Building pages
 // --------------------------------------
 gulp.task('nunjucks', () =>
-  gulp.src(`${config.templatesPath}/*.html`)
+  gulp.src(`${config.templatesPath}/**/*.html`)
     .pipe(data(getDataForFile))
     .pipe(nunjucks.compile('.', {}))
     .pipe(gulp.dest( config.distPath ))
@@ -146,7 +146,7 @@ gulp.task('browserSync', () => {
 
 gulp.task('watch', ['browserSync', 'scss'], () => {
   gulp.watch(`${config.scssSrcPath}/**/*.scss`, ['scss']);
-  gulp.watch([`${config.templatesPath}/*.html`, `${config.templatesPath}/*.njk`], ['nunjucks']); 
+  gulp.watch([`${config.templatesPath}/**/*.html`, `${config.templatesPath}/**/*.njk`], ['nunjucks']); 
   gulp.watch(`${config.jsSrcPath}/*.js`, ['babel']);
   // Other watchers
 });
