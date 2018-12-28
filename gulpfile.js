@@ -16,6 +16,8 @@ const pngquant = require('imagemin-pngquant');
 const rename = require('gulp-rename');
 const sass = require('gulp-sass');
 const uglify = require('gulp-uglify');
+const postcss = require('gulp-postcss');
+const autoprefixer = require('autoprefixer');
 
 
 // --------------------------------------
@@ -63,6 +65,20 @@ gulp.task('scss', () => {
     .pipe(browserSync.reload({
         stream: true
     }))
+});
+
+gulp.task('postcss', ['scss'], () => {
+  // for debugging what prefixes will be set
+  // console.log(autoprefixer().info());
+
+  return gulp.src(`${config.distPath}/static/stylesheets/**/*.css`)
+    .pipe(postcss([autoprefixer()]))
+    .pipe(gulp.dest(`${config.distPath}/static/stylesheets/post`));
+});
+
+gulp.task('clean:css', () => {
+  return gulp.src(`${config.distPath}/static/stylesheets/*`, {read: false})
+  .pipe(clean());
 });
 
 
@@ -144,8 +160,8 @@ gulp.task('browserSync', () => {
   })
 });
 
-gulp.task('watch', ['browserSync', 'scss'], () => {
-  gulp.watch(`${config.scssSrcPath}/**/*.scss`, ['scss']);
+gulp.task('watch', ['browserSync', 'postcss'], () => {
+  gulp.watch(`${config.scssSrcPath}/**/*.scss`, ['postcss']);
   gulp.watch([`${config.templatesPath}/**/*.html`, `${config.templatesPath}/**/*.njk`], ['nunjucks']); 
   gulp.watch(`${config.jsSrcPath}/*.js`, ['babel']);
   // Other watchers
@@ -155,6 +171,6 @@ gulp.task('watch', ['browserSync', 'scss'], () => {
 // --------------------------------------
 // Task sequences
 // --------------------------------------
-gulp.task('production', ['nunjucks', 'scss', 'babel-min', 'copy-imgs', 'copy-vendor-js']);
-gulp.task('build', ['nunjucks', 'scss', 'babel']);
-gulp.task('default', ['nunjucks', 'scss', 'babel', 'copy-imgs', 'copy-vendor-js']);
+gulp.task('production', ['nunjucks', 'postcss', 'babel-min', 'copy-imgs', 'copy-vendor-js']);
+gulp.task('build', ['nunjucks', 'postcss', 'babel']);
+gulp.task('default', ['nunjucks', 'postcss', 'babel', 'copy-imgs', 'copy-vendor-js']);

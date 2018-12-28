@@ -4,3 +4,8 @@
 html {
   font-size: 19px;
 }
+
+// used to check autoprefixer is working
+::placeholder {
+  color: gray;
+}

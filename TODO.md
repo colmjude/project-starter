@@ -2,8 +2,10 @@
 
 ## Enhancements
 
-* Add PostCSS autoprefixer
+* Add PostCSS autoprefixer [Done]
 
 ## Snag list
 
-* need to clean up generated pages before building again
+* need to clean up generated pages HTML before building again
+* consider splitting gulpfile.js into separate tasks for readability
+* upgrade gulp to v4+
