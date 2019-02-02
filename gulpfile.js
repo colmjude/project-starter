@@ -15,6 +15,7 @@ const nunjucks = require('gulp-nunjucks');
 const pngquant = require('imagemin-pngquant');
 const rename = require('gulp-rename');
 const sass = require('gulp-sass');
+const sassLint = require('gulp-sass-lint');
 const uglify = require('gulp-uglify');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
@@ -79,6 +80,16 @@ gulp.task('postcss', ['scss'], () => {
 gulp.task('clean:css', () => {
   return gulp.src(`${config.distPath}/static/stylesheets/*`, {read: false})
   .pipe(clean());
+});
+
+gulp.task('sass:lint', () => {
+  return gulp.src(`${config.scssSrcPath}/**/*.s+(a|c)ss`)
+    .pipe(sassLint({
+      files: {ignore: `${config.scssSrcPath}/vendor/_mq.scss`},
+      configFile: '.sass-lint.yml'
+    }))
+    .pipe(sassLint.format())
+    .pipe(sassLint.failOnError());
 });
 
 
