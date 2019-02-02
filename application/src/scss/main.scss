@@ -1,14 +1,16 @@
-@import 'my-reset';
+@import "my-reset";
 
-@import 'vendor/mq';
-@import 'helpers/all';
-@import 'mixins/all';
+@import "vendor/mq";
+@import "helpers/all";
+@import "mixins/all";
 
 html {
   font-size: 19px;
 }
 
 // used to check autoprefixer is working
+$ps-grey-colour: #f8f8f8;
+
 ::placeholder {
-  color: gray;
+  color: $ps-grey-colour;
 }

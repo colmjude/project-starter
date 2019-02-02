@@ -1,4 +1,5 @@
 @mixin box-shadow($box-shadow...) {
+  // sass-lint:disable-block property-sort-order
   -webkit-box-shadow: $box-shadow;
   box-shadow: $box-shadow;
 }
